@@ -7,15 +7,10 @@ export const defaultTheme = {
       text: "#111213",
       error: "#AB668A",
     },
-    spacing: {
-      small: 8,
+    fontsize: {
+      small: 12,
       medium: 16,
       large: 24,
-    },
-    borderRadius: {
-      small: 4,
-      medium: 8,
-      large: 16,
     },
   };
 
