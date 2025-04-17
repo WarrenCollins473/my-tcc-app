@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { StyleSheet, Text, View } from 'react-native';
 import HourScreen from '../screens/HourScreen';
 import { defaultTheme } from '../theme/DefautTheme';
+import StackRoute from './stack.routes';
 
 
 export default function DrawerRoute() {
@@ -22,10 +22,16 @@ export default function DrawerRoute() {
         drawerStyle: {
             backgroundColor: defaultTheme.colors.primary, 
             },
+        headerShadowVisible: false,
       }}>
         <Drawer.Screen
-        name='Minhas horas'
+        name='Home'
         component={HourScreen}
+        >
+        </Drawer.Screen>
+        <Drawer.Screen 
+        name='Documentos'
+        component={StackRoute}
         >
         </Drawer.Screen>
     </Drawer.Navigator>

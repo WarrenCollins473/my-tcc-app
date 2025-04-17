@@ -1,0 +1,447 @@
+{
+  "categorias": [
+    {
+      "nome": "Ensino",
+      "limite_categoria": 100,
+      "atividades": [
+        {
+          "nome": "Aproveitamento de disciplina optativa além do número mínimo exigido pelo curso",
+          "carga_individual": 30,
+          "carga_maxima": 60
+        },
+        {
+          "nome": "Atuação como ministrante de disciplina em cursos de ensino médio",
+          "tipos": [
+            {
+              "nome": "Vinculada ao curso",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Não vinculada ao curso",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            }
+          ]
+        },
+        {
+          "nome": "Atuação como ministrante de palestra",
+          "tipos": [
+            {
+              "nome": "Relacionada ao curso",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Não relacionada ao curso",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            }
+          ]
+        },
+        {
+          "nome": "Atuação como ministrante em curso, minicurso ou prática de laboratório",
+          "tipos": [
+            {
+              "nome": "Relacionada ao curso",
+              "carga_individual": 20,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Não relacionada ao curso",
+              "carga_individual": 10,
+              "carga_maxima": 30
+            }
+          ]
+        },
+        {
+          "nome": "Participação, como bolsista ou voluntário, em programa ou projeto na área de ensino",
+          "carga_individual": 20,
+          "carga_maxima": 60
+        },
+        {
+          "nome": "Participação em curso de idioma",
+          "tipos": [
+            {
+              "nome": "Ministrante",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Ouvinte",
+              "carga_individual": 15,
+              "carga_maxima": 60
+            }
+          ]
+        },
+        {
+          "nome": "Participação em exame de proficiência em língua estrangeira, com aprovação, realizada em instituição credenciada",
+          "carga_individual": 30,
+          "carga_maxima": 30
+        },
+        {
+          "nome": "Participação em intercâmbio",
+          "tipos": [
+            {
+              "nome": "Universidade nacional",
+              "carga_individual": 40,
+              "carga_maxima": 40
+            },
+            {
+              "nome": "Universidade internacional",
+              "carga_individual": 80,
+              "carga_maxima": 80
+            }
+          ]
+        },
+        {
+          "nome": "Elaboração de material didático (apostila, tutorial ou similar)",
+          "carga_individual": 15,
+          "carga_maxima": 30
+        },
+        {
+          "nome": "Exercício de monitoria ou tutoria de disciplina",
+          "tipos": [
+            {
+              "nome": "Vinculada ao curso",
+              "carga_individual": 20,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Não vinculada ao curso",
+              "carga_individual": 10,
+              "carga_maxima": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Pesquisa",
+      "limite_categoria": 100,
+      "atividades": [
+        {
+          "nome": "Participação em projeto de pesquisa",
+          "tipos": [
+            {
+              "nome": "Projeto financiado",
+              "carga_individual": 10,
+              "carga_maxima": 100
+            },
+            {
+              "nome": "Projeto não financiado",
+              "carga_individual": 5,
+              "carga_maxima": 100
+            }
+          ]
+        },
+        {
+          "nome": "Publicação de trabalho científico de evento de pesquisa",
+          "tipos": [
+            {
+              "nome": "Artigo completo (indexado)",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Artigo completo (não indexado)",
+              "carga_individual": 20,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Artigo curto, resumo, resumo estendido ou similar (indexado)",
+              "carga_individual": 15,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Artigo curto, resumo, resumo estendido ou similar (não indexado)",
+              "carga_individual": 10,
+              "carga_maxima": 60
+            }
+          ]
+        },
+        {
+          "nome": "Publicação de trabalho científico em periódico/revista",
+          "tipos": [
+            {
+              "nome": "Artigo (indexado)",
+              "carga_individual": 50,
+              "carga_maxima": 100
+            },
+            {
+              "nome": "Artigo (não indexado)",
+              "carga_individual": 25,
+              "carga_maxima": 50
+            }
+          ]
+        },
+        {
+          "nome": "Publicação de trabalho científico na área do curso",
+          "tipos": [
+            {
+              "nome": "Livro (obra completa)",
+              "carga_individual": 50,
+              "carga_maxima": 100
+            },
+            {
+              "nome": "Capítulo de livro",
+              "carga_individual": 25,
+              "carga_maxima": 50
+            }
+          ]
+        },
+        {
+          "nome": "Apresentação de trabalho científico em evento de pesquisa",
+          "carga_individual": 20,
+          "carga_maxima": 60
+        }
+      ]
+    },
+    {
+      "nome": "Extensão",
+      "limite_categoria": 100,
+      "atividades": [
+        {
+          "nome": "Participação em projetos de extensão",
+          "carga_individual": 10,
+          "carga_maxima": 60
+        },
+        {
+          "nome": "Participação em evento de extensão relacionado com o curso",
+          "tipos": [
+            {
+              "nome": "Membro de comissão organizadora",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Membro de equipe de apoio",
+              "carga_individual": 20,
+              "carga_maxima": 40
+            },
+            {
+              "nome": "Participante ou mediador de mesa redonda",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            },
+            {
+              "nome": "Monitor",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            },
+            {
+              "nome": "Ouvinte (participação geral)",
+              "carga_individual": 10,
+              "carga_maxima": 40
+            },
+            {
+              "nome": "Ouvinte (minicurso ou similar)",
+              "carga_individual": 10,
+              "carga_maxima": 40
+            }
+          ]
+        },
+        {
+          "nome": "Participação em evento de extensão não relacionado com o curso",
+          "tipos": [
+            {
+              "nome": "Membro de comissão organizadora",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            },
+            {
+              "nome": "Membro de equipe de apoio",
+              "carga_individual": 10,
+              "carga_maxima": 20
+            },
+            {
+              "nome": "Participante ou mediador de mesa redonda",
+              "carga_individual": 5,
+              "carga_maxima": 15
+            },
+            {
+              "nome": "Monitor",
+              "carga_individual": 5,
+              "carga_maxima": 15
+            },
+            {
+              "nome": "Ouvinte (participação geral)",
+              "carga_individual": 5,
+              "carga_maxima": 20
+            },
+            {
+              "nome": "Ouvinte (minicurso ou similar)",
+              "carga_individual": 5,
+              "carga_maxima": 20
+            }
+          ]
+        },
+        {
+          "nome": "Participação de trabalho em evento de extensão",
+          "tipos": [
+            {
+              "nome": "Premiação",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Apresentação",
+              "carga_individual": 15,
+              "carga_maxima": 30
+            }
+          ]
+        },
+        {
+          "nome": "Participação em competição (maratona de programação, olimpíada de informática ou similar)",
+          "tipos": [
+            {
+              "nome": "Premiação",
+              "carga_individual": 30,
+              "carga_maxima": 60
+            },
+            {
+              "nome": "Participação",
+              "carga_individual": 20,
+              "carga_maxima": 60
+            }
+          ]
+        },
+        {
+          "nome": "Participação em visita técnica ou viagem de estudo",
+          "carga_individual": 10,
+          "carga_maxima": 30
+        }
+      ]
+    },
+    {
+      "nome": "Profissionais",
+      "limite_categoria": 100,
+      "atividades": [
+        {
+          "nome": "Participação em exame de certificação profissional",
+          "carga_individual": 50,
+          "carga_maxima": 100
+        },
+        {
+          "nome": "Desempenho, como empregado, funcionário público ou sócio/proprietário de instituição de natureza privada, de funções típicas da área do curso",
+          "carga_individual": 10,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Realização de estágio não curricular (não obrigatório) na área do curso",
+          "carga_individual": 5,
+          "carga_maxima": 40
+        },
+        {
+          "nome": "Participação em curso de capacitação na área do curso",
+          "carga_individual": 1,
+          "carga_maxima": 30
+        }
+      ]
+    },
+    {
+      "nome": "Empreendedorismo e Inovação",
+      "limite_categoria": 50,
+      "atividades": [
+        {
+          "nome": "Criação de projeto inovador direcionado para empresa júnior, empresa incubadora ou similar",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em empresa júnior",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em empresa incubadora",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em hackathon ou competição de simulação empresarial",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        }
+      ]
+    },
+    {
+      "nome": "Sociais, Esportivas e Culturais",
+      "limite_categoria": 50,
+      "atividades": [
+        {
+          "nome": "Doação de medula óssea ou órgãos e tecidos",
+          "carga_individual": 50,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Doação de sangue",
+          "carga_individual": 10,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Cadastro em banco de doadores de medula óssea",
+          "carga_individual": 25,
+          "carga_maxima": 25
+        },
+        {
+          "nome": "Cadastro em banco de doadores de órgãos e tecidos",
+          "carga_individual": 25,
+          "carga_maxima": 25
+        },
+        {
+          "nome": "Organização de atividade de cunho cultural (cinema, teatro, dança, coral ou similar)",
+          "carga_individual": 10,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em atividade cultural, esportiva, de entretenimento, ambiental ou étnico-racial",
+          "carga_individual": 5,
+          "carga_maxima": 15
+        },
+        {
+          "nome": "Participação como voluntário em ação social ou comunitária",
+          "carga_individual": 10,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação como membro de comissão de formatura",
+          "carga_individual": 10,
+          "carga_maxima": 10
+        },
+        {
+          "nome": "Participação como membro da associação atlética",
+          "carga_individual": 5,
+          "carga_maxima": 20
+        },
+        {
+          "nome": "Participação em sessão de exibição de filme comentado",
+          "carga_individual": 5,
+          "carga_maxima": 20
+        }
+      ]
+    },
+    {
+      "nome": "Políticas",
+      "limite_categoria": 50,
+      "atividades": [
+        {
+          "nome": "Participação como membro do Diretório Acadêmico do curso ou Diretório Central Estudantil",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em reuniões do Colegiado de curso",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        },
+        {
+          "nome": "Participação em Conselho Superior, em Conselho de Campus e/ou em demais órgãos colegiados do IFBA com previsão de representação discente",
+          "carga_individual": 25,
+          "carga_maxima": 50
+        }
+      ]
+    }
+  ],
+  "total_minimo": 200
+}
