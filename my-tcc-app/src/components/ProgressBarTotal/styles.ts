@@ -16,7 +16,7 @@ export const BarBackground = styled.View`
   elevation: 5;
 `;
 
-export const BarFill = styled.View<{percentage: number }>`
+export const BarFill = styled.View<{ percentage: number }>`
   width: ${({ percentage }) => percentage}%;
   background-color: ${defaultTheme.colors.secondary};
   height: 100%;
