@@ -1,99 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import { DocumentDetailScreenProps } from "../../navigation/types/navigation";
 import { Picker } from "@react-native-picker/picker";
-import * as baremaJson from "./../../../assets/barema.json";
-import { converterJsonParaBarema } from "../../utils/BaremaConversor";
-import { Barema } from "../../models/barema";
-import { View } from "react-native";
+import { useDocumentsContext } from "../../context/documentsContext";
+import CircularLoading from "../../components/CircularLoading";
+import { useDocumentDetails } from "../../hooks/useDocumentDetails";
 
 export default function DocumentDetails({ navigation, route }: DocumentDetailScreenProps) {
   const { itemId } = route.params;
+  const {
+    atividade,
+    barema,
+    categoria,
+    horasLancadas,
+    horasObtidas,
+    link,
+    loading,
+    observacao,
+    tipo,
+    categoriaErro,
+    atividadeErro,
+    horasLancadasErro,
+    tipoErro,
+    linkErro,
+    handleAtividadeChange,
+    handleHorasLancadasChange,
+    handleTipoChange,
+    handleDelete,
+    handleSubmit,
+    handleUpdate,
+    setCategoria,
+    setLink,
+    setObservacao,
+    temTipo,
+  } = useDocumentDetails(itemId);
 
-  const [categoria, setCategoria] = useState("");
-  const [atividade, setAtividade] = useState("");
-  const [tipo, setTipo] = useState("");
-  const [horasLancadas, setHorasLancadas] = useState("");
-  const [observacao, setObservacao] = useState("");
-  const [link, setLink] = useState("");
-
-  const [barema, setBarema] = useState<Barema>();
-  const [horasObtidas, setHorasObtidas] = useState("0");
-  const [cargaHorariaIndividual, setCargaHorariaIndividual] = useState(0);
-  const [cargaHorariaMaxima, setCargaHorariaMaxima] = useState(0);
-
-  useEffect(() => {
-    const barema = converterJsonParaBarema(baremaJson);
-    setBarema(barema);
-  }, []);
-
-  function temTipo(barema: Barema) {
-    return (
-      barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === atividade)?.tipos !==
-      undefined
-    );
-  }
-
-  function calcularHora(pontosLancados: number, individual: number, maxima: number) {
-    if (pontosLancados > 0) {
-      if (pontosLancados < individual) {
-        return 0;
-      } else if (maxima === 0) {
-        return 0;
-      } else {
-        return Math.min(maxima, Math.floor(pontosLancados / individual) * individual);
-      }
-    } else {
-      return "0";
-    }
-  }
-
-  function handleHorasLancadasChange(value: string) {
-    setHorasLancadas(value);
-    const parsedValue = parseInt(value.replace(/[^0-9]/g, ""));
-    const horas = calcularHora(parsedValue, cargaHorariaIndividual, cargaHorariaMaxima);
-    setHorasObtidas(horas.toString());
-  }
-
-  function handeAtividadeChange(value: string) {
-    setAtividade(value);
-    if (
-      barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === value)
-        ?.carga_individual
-    ) {
-      const atividadeSelecionada = barema?.categorias
-        .find(cat => cat.nome === categoria)
-        ?.atividades.find(act => act.nome === value);
-      setCargaHorariaIndividual(atividadeSelecionada?.carga_individual || 0);
-      setCargaHorariaMaxima(atividadeSelecionada?.carga_maxima || 0);
-    }
-  }
-
-  function handleTipoChange(value: string) {
-    setTipo(value);
-    const tipoSelecionado = barema?.categorias
-      .find(cat => cat.nome === categoria)
-      ?.atividades.find(act => act.nome === atividade)
-      ?.tipos?.find(tip => tip.nome === value);
-    if (tipoSelecionado) {
-      setCargaHorariaIndividual(tipoSelecionado.carga_individual);
-      setCargaHorariaMaxima(tipoSelecionado.carga_maxima);
-    } else {
-      const atividadeSelecionada = barema?.categorias
-        .find(cat => cat.nome === categoria)
-        ?.atividades.find(act => act.nome === atividade);
-      if (atividadeSelecionada) {
-        setCargaHorariaIndividual(atividadeSelecionada.carga_individual || 0);
-        setCargaHorariaMaxima(atividadeSelecionada.carga_maxima || 0);
-      }
-    }
-  }
-
-  return (
+  return loading ? (
+    <CircularLoading></CircularLoading>
+  ) : (
     <S.ContainerScroll>
       <S.Container>
         <S.Label>Categoria</S.Label>
-        <S.PickerContainer>
+        <S.PickerContainer style={{ borderColor: categoriaErro ? "red" : "#ccc" }}>
           <Picker
             numberOfLines={4}
             selectedValue={categoria}
@@ -113,11 +61,11 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
           </Picker>
         </S.PickerContainer>
         <S.Label>Atividade</S.Label>
-        <S.PickerContainer>
+        <S.PickerContainer style={{ borderColor: atividadeErro ? "red" : "#ccc" }}>
           <Picker
             numberOfLines={4}
             selectedValue={atividade}
-            onValueChange={itemValue => handeAtividadeChange(itemValue)}
+            onValueChange={itemValue => handleAtividadeChange(itemValue)}
           >
             <Picker.Item
               label={"Nenhum"}
@@ -137,7 +85,7 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
         </S.PickerContainer>
 
         <S.Label>Tipo</S.Label>
-        <S.PickerContainer>
+        <S.PickerContainer style={{ borderColor: tipoErro ? "red" : "#ccc" }}>
           <Picker
             numberOfLines={4}
             selectedValue={tipo}
@@ -201,6 +149,8 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
               keyboardType="numeric"
               value={horasLancadas}
               onChangeText={value => handleHorasLancadasChange(value)}
+              onPress={() => handleAtividadeChange(atividade)}
+              style={{ borderColor: horasLancadasErro ? "red" : "#ccc" }}
             />
           </S.CargaBox>
           <S.CargaBox>
@@ -221,14 +171,21 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
           value={link}
           onChangeText={setLink}
           placeholder="URL do certificado"
+          style={{ borderColor: linkErro ? "red" : "#ccc" }}
         />
 
-        <S.Button erro={false}>
+        <S.Button
+          erro={false}
+          onPress={itemId ? handleUpdate : handleSubmit}
+        >
           <S.ButtonText>Salvar</S.ButtonText>
         </S.Button>
 
         {itemId && (
-          <S.Button erro={true}>
+          <S.Button
+            erro={true}
+            onPress={() => handleDelete(itemId)}
+          >
             <S.ButtonText>Excluir</S.ButtonText>
           </S.Button>
         )}

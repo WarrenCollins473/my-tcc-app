@@ -4,6 +4,7 @@ import { defaultTheme } from "../../theme/DefautTheme";
 export const Container = styled.View`
   flex: 1;
   background-color: ${defaultTheme.colors.background};
+  padding: 20px;
 `;
 
 export const Line = styled.Text`

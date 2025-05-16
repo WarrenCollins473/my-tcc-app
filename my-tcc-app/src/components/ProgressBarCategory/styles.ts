@@ -5,7 +5,7 @@ export const Container = styled.View`
   margin: 12px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const BarBackground = styled.View`

@@ -1,39 +1,41 @@
 import { FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProgressBar from "../../components/ProgressBarTotal";
 import ProgressBarCategory from "../../components/ProgressBarCategory";
-import { Barema, Categoria } from "../../models/barema";
-import { converterJsonParaBarema } from "../../utils/BaremaConversor";
-import * as baremaJson from "./../../../assets/barema.json";
 import * as S from "./styles";
+import { useDocumentsContext } from "../../context/documentsContext";
+import CircularLoading from "../../components/CircularLoading";
+import { horasPorCategoria } from "../../models/document";
 
 export default function HourScreen() {
-  const [barema, setBarema] = useState<Barema>();
+  const { hourByCategory, hourTotal, loading, getDocumentsList } = useDocumentsContext();
 
   useEffect(() => {
-    const barema = converterJsonParaBarema(baremaJson);
-    setBarema(barema);
+    getDocumentsList();
   }, []);
 
-  const renderItem = ({ item }: { item: Categoria }) => {
+  const renderItem = ({ item }: { item: horasPorCategoria }) => {
     return (
       <ProgressBarCategory
-        currentValue={20}
-        maxValue={item.limite_categoria}
-        categoryName={item.nome}
+        currentValue={item.horas}
+        maxValue={item.maxHoras}
+        categoryName={item.categoria}
       ></ProgressBarCategory>
     );
   };
-  return (
+
+  return loading ? (
+    <CircularLoading></CircularLoading>
+  ) : (
     <S.Container>
       <ProgressBar
-        currentValue={50}
+        currentValue={hourTotal!}
         maxValue={200}
       ></ProgressBar>
       <S.Line></S.Line>
       <S.Title>Por categoria</S.Title>
       <FlatList
-        data={barema?.categorias}
+        data={hourByCategory}
         renderItem={renderItem}
       ></FlatList>
     </S.Container>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./styles";
 import DocumentCard from "../../components/DocumentCard/intex";
 import { Document } from "../../models/document";
@@ -7,97 +7,39 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { RootStackParamList } from "../../navigation/types/navigation";
-
-const documnets: Document[] = [
-  {
-    id: 1,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    tipo: "Relacionada",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 2,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 3,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 4,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 5,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 6,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 7,
-    categoria: "ENSINO",
-    atividade: "Atuação como ministrante de palestra",
-    horas_obtidas: 20,
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: 8,
-    categoria: "ENSINO",
-    atividade:
-      "Participação em Conselho Superior, em Conselho de Campus e/ou em demais órgãos colegiados do IFBA com previsão de representação discente (a cada semestre)",
-    horas_obtidas: 20,
-    tipo: "Artigo curto, resumo, resumo estendido ou similar (indexado)",
-    observacao: "Palestra sobre TCC",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-];
-
-function renderItem({ item }: { item: Document }) {
-  return (
-    <DocumentCard
-      atividade={item.atividade}
-      categoria={item.categoria}
-      horas={item.horas_obtidas}
-      id={item.id}
-      tipo={item.tipo!}
-    ></DocumentCard>
-  );
-}
+import { useDocumentsContext } from "../../context/documentsContext";
+import EmptyDocument from "../../components/emptyDocument";
 
 export default function DocumentScreen() {
   const navigation = useNavigation<DrawerNavigationProp<RootStackParamList>>();
+  const { documents, getDocumentsList } = useDocumentsContext();
+
+  useEffect(() => {
+    getDocumentsList();
+  }, []);
+
+  function renderItem({ item }: { item: Document }) {
+    return (
+      <DocumentCard
+        atividade={item.atividade}
+        categoria={item.categoria}
+        horas={item.horas}
+        id={item.id}
+        tipo={item.tipo!}
+      ></DocumentCard>
+    );
+  }
   return (
     <S.Container>
-      <FlatList
-        data={documnets}
-        renderItem={renderItem}
-      ></FlatList>
+      {documents?.length == 0 ? (
+        <EmptyDocument></EmptyDocument>
+      ) : (
+        <FlatList
+          data={documents}
+          renderItem={renderItem}
+        ></FlatList>
+      )}
+
       <S.adicionarButton onPress={() => navigation.navigate("Documento", {})}>
         <AntDesign
           name="plus"

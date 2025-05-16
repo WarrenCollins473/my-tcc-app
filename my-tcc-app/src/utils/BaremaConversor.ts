@@ -1,4 +1,4 @@
-import { Barema } from "../models/barema";
+import { Barema, Categoria } from "../models/barema";
 
 export function converterJsonParaBarema(jsonData: any): Barema {
   return {

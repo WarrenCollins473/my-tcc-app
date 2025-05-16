@@ -3,7 +3,13 @@ export interface Document {
   categoria: string;
   atividade: string;
   tipo?: string;
-  horas_obtidas: number;
+  horas: number;
   observacao: string;
   link: string;
+}
+
+export interface horasPorCategoria {
+  categoria: string;
+  horas: number;
+  maxHoras: number;
 }
