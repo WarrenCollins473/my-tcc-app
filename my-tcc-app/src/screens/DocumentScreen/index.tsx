@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as S from "./styles";
-import DocumentCard from "../../components/DocumentCard/intex";
+import DocumentCard from "../../components/DocumentCard";
 import { Document } from "../../models/document";
 import { FlatList } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { RootStackParamList } from "../../navigation/types/navigation";
 import { useDocumentsContext } from "../../context/documentsContext";
-import EmptyDocument from "../../components/emptyDocument";
+import EmptyDocument from "../../components/EmptyDocument";
 
 export default function DocumentScreen() {
   const navigation = useNavigation<DrawerNavigationProp<RootStackParamList>>();
@@ -40,7 +40,10 @@ export default function DocumentScreen() {
         ></FlatList>
       )}
 
-      <S.adicionarButton onPress={() => navigation.navigate("Documento", {})}>
+      <S.adicionarButton
+        testID="add-button"
+        onPress={() => navigation.navigate("Documento", {})}
+      >
         <AntDesign
           name="plus"
           size={30}

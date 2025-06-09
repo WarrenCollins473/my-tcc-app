@@ -10,10 +10,13 @@ const ProgressBarTotal: React.FC<ProgressBarTotalProps> = ({ currentValue, maxVa
   const percentage = Math.min((currentValue / maxValue) * 100, 100);
 
   return (
-    <S.Container>
-      <S.TotalTitle>Total de Horas</S.TotalTitle>
-      <S.BarBackground>
-        <S.BarFill percentage={percentage} />
+    <S.Container testID="container">
+      <S.TotalTitle testID="total-title">Total de Horas</S.TotalTitle>
+      <S.BarBackground testID="bar-background">
+        <S.BarFill
+          percentage={percentage}
+          testID="bar-fill"
+        />
       </S.BarBackground>
       <S.TotalValue>
         {currentValue}/{maxValue}

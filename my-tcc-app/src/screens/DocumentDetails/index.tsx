@@ -2,7 +2,6 @@ import React from "react";
 import * as S from "./styles";
 import { DocumentDetailScreenProps } from "../../navigation/types/navigation";
 import { Picker } from "@react-native-picker/picker";
-import { useDocumentsContext } from "../../context/documentsContext";
 import CircularLoading from "../../components/CircularLoading";
 import { useDocumentDetails } from "../../hooks/useDocumentDetails";
 
@@ -23,6 +22,8 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
     horasLancadasErro,
     tipoErro,
     linkErro,
+    cargaHorariaIndividual,
+    cargaHorariaMaxima,
     handleAtividadeChange,
     handleHorasLancadasChange,
     handleTipoChange,
@@ -65,7 +66,7 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
           <Picker
             numberOfLines={4}
             selectedValue={atividade}
-            onValueChange={itemValue => handleAtividadeChange(itemValue)}
+            onValueChange={itemValue => handleAtividadeChange(itemValue, barema!, categoria)}
           >
             <Picker.Item
               label={"Nenhum"}
@@ -89,15 +90,11 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
           <Picker
             numberOfLines={4}
             selectedValue={tipo}
-            onValueChange={itemValue => handleTipoChange(itemValue)}
-            enabled={
-              barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === atividade)
-                ?.tipos == undefined
-                ? false
-                : true
-            }
+            onValueChange={itemValue => handleTipoChange(itemValue, atividade, categoria, barema!)}
+            enabled={temTipo(barema!)}
           >
             <Picker.Item
+              style={{ color: temTipo(barema!) ? "black" : "#bfbfbf" }}
               label={"Nenhum"}
               value={"Nenhum"}
             />
@@ -122,34 +119,18 @@ export default function DocumentDetails({ navigation, route }: DocumentDetailScr
             <S.TableCell>Máxima</S.TableCell>
           </S.TableRow>
           <S.TableRow>
-            <S.TableCell>
-              {temTipo(barema!)
-                ? barema?.categorias
-                    .find(cat => cat.nome === categoria)
-                    ?.atividades.find(act => act.nome === atividade)
-                    ?.tipos?.find(tip => tip.nome === tipo)?.carga_individual
-                : barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === atividade)
-                    ?.carga_individual}
-            </S.TableCell>
-            <S.TableCell>
-              {temTipo(barema!)
-                ? barema?.categorias
-                    .find(cat => cat.nome === categoria)
-                    ?.atividades.find(act => act.nome === atividade)
-                    ?.tipos?.find(tip => tip.nome === tipo)?.carga_maxima
-                : barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === atividade)
-                    ?.carga_maxima}
-            </S.TableCell>
+            <S.TableCell>{cargaHorariaIndividual}</S.TableCell>
+            <S.TableCell>{cargaHorariaMaxima}</S.TableCell>
           </S.TableRow>
         </S.Table>
         <S.CargaContainer>
           <S.CargaBox>
             <S.CargaLabel>Horas lançadas</S.CargaLabel>
             <S.CargaInput
+              testID="horas-lancadas"
               keyboardType="numeric"
               value={horasLancadas}
               onChangeText={value => handleHorasLancadasChange(value)}
-              onPress={() => handleAtividadeChange(atividade)}
               style={{ borderColor: horasLancadasErro ? "red" : "#ccc" }}
             />
           </S.CargaBox>

@@ -52,8 +52,8 @@ export function useDocumentDatabase() {
   }
   async function getDocumentById(id: number) {
     try {
-      const result = await db.getAllSync("SELECT * FROM documento WHERE id = ?", [id]);
-      if (result) {
+      const result = await db.getAllAsync("SELECT * FROM documento WHERE id = ?", [id]);
+      if (result && result.length > 0) {
         return result as Document[];
       } else {
         Alert.alert("Erro", "Documento não encontrado.");

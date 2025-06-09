@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Alert } from "react-native";
+import React from "react";
 import * as S from "./styles";
-import * as FileSystem from "expo-file-system";
-import * as Print from "expo-print";
-import * as Sharing from "expo-sharing";
 import { useDocumentsContext } from "../../context/documentsContext";
-import { Document } from "../../models/document";
 import { usePDFScreen } from "../../hooks/usePDFScreen";
 
 const PDFScreen = () => {
@@ -16,13 +11,13 @@ const PDFScreen = () => {
     <S.Container>
       <S.ContainerScroll>
         <S.Table>
-          <S.Row>
+          <S.Row testID="document-row">
             <S.HeaderCell>Total de horas</S.HeaderCell>
           </S.Row>
           <S.Cell>
             {hourTotal}/{hourMin}
           </S.Cell>
-          <S.Row>
+          <S.Row testID="document-row">
             <S.HeaderCell>Horas por categoria</S.HeaderCell>
           </S.Row>
           {hourByCategory!.map((item, index) => (
@@ -30,7 +25,7 @@ const PDFScreen = () => {
               {item.categoria}: {item.horas} / {item.maxHoras}
             </S.Cell>
           ))}
-          <S.Row>
+          <S.Row testID="document-row">
             <S.HeaderCell>Categoria</S.HeaderCell>
             <S.HeaderCell>Atividade</S.HeaderCell>
             <S.HeaderCell>Tipo</S.HeaderCell>
@@ -41,7 +36,10 @@ const PDFScreen = () => {
           {[...documents!]
             .sort((a, b) => a.categoria.localeCompare(b.categoria))
             .map(doc => (
-              <S.Row key={doc.id}>
+              <S.Row
+                testID="document-row"
+                key={doc.id}
+              >
                 <S.Cell>{doc.categoria}</S.Cell>
                 <S.Cell>{doc.atividade}</S.Cell>
                 <S.Cell>{doc.tipo ?? "-"}</S.Cell>

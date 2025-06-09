@@ -31,7 +31,6 @@ export const useDocumentDetails = (itemId: number | undefined) => {
     if (itemId) {
       loadDocument();
     }
-    handleHorasLancadasChange("");
     setLoading(false);
   }, []);
 
@@ -39,8 +38,8 @@ export const useDocumentDetails = (itemId: number | undefined) => {
     const documentsList = await getDocumentById(itemId!);
     const document = documentsList!.find(doc => doc.id === itemId);
     setCategoria(document!.categoria);
-    handleAtividadeChange(document!.atividade);
-    handleTipoChange(document!.tipo!);
+    handleAtividadeChange(document!.atividade, barema!, document!.categoria);
+    handleTipoChange(document!.tipo!, document!.atividade, document!.categoria, barema!);
     setObservacao(document!.observacao);
     setLink(document!.link);
     handleHorasLancadasChange(document!.horas.toString());
@@ -184,9 +183,10 @@ export const useDocumentDetails = (itemId: number | undefined) => {
     const parsedValue = parseInt(value.replace(/[^0-9]/g, ""));
     const horas = calcularHora(parsedValue, cargaHorariaIndividual, cargaHorariaMaxima);
     setHorasObtidas(horas.toString());
+    return horas;
   }
 
-  function handleAtividadeChange(value: string) {
+  function handleAtividadeChange(value: string, barema: Barema, categoria: string) {
     setAtividade(value);
     if (
       barema?.categorias.find(cat => cat.nome === categoria)?.atividades.find(act => act.nome === value)
@@ -198,9 +198,10 @@ export const useDocumentDetails = (itemId: number | undefined) => {
       setCargaHorariaIndividual(atividadeSelecionada?.carga_individual || 0);
       setCargaHorariaMaxima(atividadeSelecionada?.carga_maxima || 0);
     }
+    setHorasObtidas("0");
   }
 
-  function handleTipoChange(value: string) {
+  function handleTipoChange(value: string, atividade: string, categoria: string, barema: Barema) {
     setTipo(value);
     const tipoSelecionado = barema?.categorias
       .find(cat => cat.nome === categoria)
@@ -218,6 +219,7 @@ export const useDocumentDetails = (itemId: number | undefined) => {
         setCargaHorariaMaxima(atividadeSelecionada.carga_maxima || 0);
       }
     }
+    setHorasObtidas("0");
   }
   return {
     categoria,
@@ -255,5 +257,9 @@ export const useDocumentDetails = (itemId: number | undefined) => {
     handleSubmit,
     handleUpdate,
     loadDocument,
+    setCategoriaErro,
+    setAtividadeErro,
+    setHorasLancadasErro,
+    setLinkErro,
   };
 };

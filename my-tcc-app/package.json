@@ -6,15 +6,16 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@react-native-picker/picker": "2.9.0",
     "@react-navigation/drawer": "^7.3.9",
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/stack": "^7.2.10",
+    "@types/jest": "^29.5.14",
     "expo": "^52.0.46",
-    "expo-document-picker": "~13.0.3",
     "expo-file-system": "~18.0.12",
     "expo-print": "~14.0.3",
     "expo-sharing": "~13.0.1",
@@ -26,14 +27,35 @@
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
-    "styled-components": "^6.1.17"
+    "styled-components": "^6.1.17",
+    "ts-jest": "^29.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^13.2.0",
     "@types/react": "~18.3.12",
     "globals": "^16.0.0",
+    "jest": "~29.7.0",
+    "jest-expo": "~52.0.6",
     "prettier": "3.5.3",
     "typescript": "^5.3.3"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 50
+      }
+    }
   },
   "private": true
 }

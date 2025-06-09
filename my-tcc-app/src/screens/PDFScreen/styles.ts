@@ -37,9 +37,11 @@ export const HeaderCell = styled.Text`
   font-weight: bold;
   padding: 5px;
   background-color: #e0e0e0;
+  font-size: 12px;
 `;
 
 export const Cell = styled.Text`
   flex: 1;
   padding: 5px;
+  font-size: 12px;
 `;

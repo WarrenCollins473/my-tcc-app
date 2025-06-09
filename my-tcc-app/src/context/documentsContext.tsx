@@ -5,7 +5,6 @@ import { Barema } from "../models/barema";
 import { converterJsonParaBarema } from "../utils/BaremaConversor";
 import * as baremaJson from "./../../assets/barema.json";
 import { getTotalHours, getTotalHoursbyCategory } from "../utils/HoursCalculator";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 type DocumentsContextType = {
   hourByCategory?: horasPorCategoria[];

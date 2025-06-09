@@ -16,7 +16,10 @@ export default function DocumentCard({ atividade, categoria, horas, tipo, id }: 
   const navigation = useNavigation<DrawerNavigationProp<RootStackParamList>>();
 
   return (
-    <S.Container onPress={() => navigation.navigate("Documento", { itemId: id })}>
+    <S.Container
+      onPress={() => navigation.navigate("Documento", { itemId: id })}
+      testID="document-card-container"
+    >
       <S.GroupDetails>
         <S.Title>Categoria</S.Title>
         <S.Description>{categoria}</S.Description>

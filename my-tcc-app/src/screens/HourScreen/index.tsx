@@ -8,7 +8,7 @@ import CircularLoading from "../../components/CircularLoading";
 import { horasPorCategoria } from "../../models/document";
 
 export default function HourScreen() {
-  const { hourByCategory, hourTotal, loading, getDocumentsList } = useDocumentsContext();
+  const { hourByCategory, hourTotal, loading, barema, getDocumentsList } = useDocumentsContext();
 
   useEffect(() => {
     getDocumentsList();
@@ -30,7 +30,7 @@ export default function HourScreen() {
     <S.Container>
       <ProgressBar
         currentValue={hourTotal!}
-        maxValue={200}
+        maxValue={barema!.total_minimo}
       ></ProgressBar>
       <S.Line></S.Line>
       <S.Title>Por categoria</S.Title>

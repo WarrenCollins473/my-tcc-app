@@ -17,7 +17,10 @@ const ProgressBarCategory: React.FC<ProgressBarCategoryProps> = ({ currentValue,
         {currentValue}/{maxValue}
       </S.CategoryValue>
       <S.BarBackground>
-        <S.BarFill percentage={percentage} />
+        <S.BarFill
+          testID="bar-fill"
+          percentage={percentage}
+        />
       </S.BarBackground>
     </S.Container>
   );
