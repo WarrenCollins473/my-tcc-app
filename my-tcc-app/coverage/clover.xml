@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1749482702752" clover="3.2.0">
-  <project timestamp="1749482702752" name="All files">
+<coverage generated="1752516275796" clover="3.2.0">
+  <project timestamp="1752516275796" name="All files">
     <metrics statements="359" coveredstatements="306" conditionals="104" coveredconditionals="67" methods="98" coveredmethods="83" elements="561" coveredelements="456" complexity="0" loc="359" ncloc="359" packages="17" files="32" classes="32"/>
     <package name="components.CircularLoading">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
