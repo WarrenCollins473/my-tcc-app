@@ -1,5 +1,3 @@
-# my-tcc-app
-
 # 🎓 Gerenciador de Atividades Complementares
 Este é o repositório do projeto de Trabalho de Conclusão de Curso (TCC) de Fabrício Pereira, para o curso de Bacharelado em Sistemas de Informação no Instituto Federal da Bahia (IFBA) - Campus Vitória da Conquista.
 
